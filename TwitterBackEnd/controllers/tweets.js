@@ -2,7 +2,7 @@ const { createTweet, getAllTweets, getTweetById, deleteTweetById } = require('..
 const { generateError, createPathIfNotExists } = require('../helpers');
 const path = require('path');
 const sharp = require('sharp');
-const { v4: uuidv4 } = require('uuid');
+const { uuid } = require('uuidv4');
 
 const getTweetsController = async (req, res, next) => {
     try {
@@ -40,7 +40,7 @@ const newTweetController = async (req, res, next) => {
             image.resize(1000);
 
             //Guardo la imagen con un nombre aleatorio en el directorio uploads
-            imageFileName = `${uuid4().jpg}`;
+            imageFileName = uuid() + '.jpg';
 
             await image.toFile(path.join(uploadsDir, imageFileName));
         }
